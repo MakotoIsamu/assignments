@@ -1,0 +1,53 @@
+// Q: Find the employee with employee_id 25.
+db.employees.find({ employee_id: 25 });
+
+// Q: Find all employees in Department3.
+db.employees.find({ department: "Department3" });
+
+// Q: List all employees with a salary greater than 55000.
+db.employees.find({ salary: { $gt: 55000 } });
+
+// Q: Count the number of employees in Department1.
+db.employees.countDocuments({ department: "Department1" });
+
+// Q: Increase the salary of the employee with employee_id 50 by 5000.
+db.employees.updateOne(
+  { employee_id: 50 },
+  { $inc: { salary: 5000 } }
+);
+
+// Q: Find all employees who joined after 2022-01-15.
+db.employees.find({ date_joined: { $gt: ISODate("2022-01-15") } });
+
+// Q: Delete the employee with employee_id 10.
+db.employees.deleteOne({ employee_id: 10 });
+
+// Q: Find all employees whose last name starts with 'L'.
+db.employees.find({ last_name: { $regex: "^L" } });
+
+// Q: Find all employees with no manager (manager_id is None).
+db.employees.find({ manager_id: null });
+
+// Q: Find all employees who are older than 30.
+db.employees.find({ age: { $gt: 30 } });
+
+// Q: Update the department of the employee with employee_id 75 to Department2.
+db.employees.updateOne(
+  { employee_id: 75 },
+  { $set: { department: "Department2" } }
+);
+
+// Q: Find all employees whose email contains 'firstname5'.
+db.employees.find({ email: { $regex: "firstname5" } });
+
+// Q: Find all employees who joined on or before 2022-01-10.
+db.employees.find({ date_joined: { $lte: ISODate("2022-01-10") } });
+
+// Q: Retrieve all employees sorted by salary in descending order.
+db.employees.find().sort({ salary: -1 });
+
+// Q: Count the number of employees who are in Department4 and have a salary above 52000.
+db.employees.countDocuments({
+  department: "Department4",
+  salary: { $gt: 52000 }
+});
